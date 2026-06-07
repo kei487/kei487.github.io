@@ -1,0 +1,126 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body,
+ul, ol, li,
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif;
+  line-height: 1.7;
+  color: #333;
+  background-color: #fafafa;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.container {
+  width: min(720px, 92%);
+  margin: 0 auto;
+}
+
+.site-header {
+  background-color: #1e293b;
+  color: #f8fafc;
+  padding: 2.5rem 0;
+}
+
+.site-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.site-title a {
+  color: inherit;
+}
+
+.site-title a:hover {
+  text-decoration: none;
+  opacity: 0.85;
+}
+
+.site-subtitle {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: #94a3b8;
+}
+
+main {
+  flex: 1;
+  padding: 3rem 0 4rem;
+}
+
+.intro {
+  margin-bottom: 3rem;
+}
+
+.intro h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.intro p {
+  color: #475569;
+}
+
+.pages h2 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.page-list {
+  list-style: none;
+}
+
+.page-list li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 1rem;
+  padding: 0.875rem 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.page-list li:last-child {
+  border-bottom: none;
+}
+
+.page-list a {
+  font-weight: 500;
+  min-width: 6rem;
+}
+
+.page-desc {
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+.site-footer {
+  background-color: #f1f5f9;
+  border-top: 1px solid #e2e8f0;
+  padding: 1.25rem 0;
+  text-align: center;
+  font-size: 0.8125rem;
+  color: #64748b;
+}
