@@ -1,118 +1,332 @@
 <!DOCTYPE html>
 <html lang="ja">
+<!--
+================================================================================
+  いさむボーイ HP — 編集ガイド（GitHub の Web から更新する場合）
+
+  1. GitHub で demo/index.html を開く
+  2. 鉛筆アイコン（Edit）をクリック
+  3. 「▼ 編集エリア ▼」と書いてある部分だけを書き換える
+  4. ページ下の「Commit changes」で保存 → 数分でサイトに反映
+
+  ※ <style> 以降のデザイン設定は、通常触る必要はありません。
+================================================================================
+-->
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="大道芸人 いさむボーイ 公式サイト（デモ）">
+  <meta name="description" content="大道芸人 いさむボーイ 公式サイト">
   <title>いさむボーイ | 大道芸人</title>
-  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* デザイン設定（通常は編集不要） */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body, ul, ol, li, h1, h2, h3, p, dl, dt, dd { margin: 0; padding: 0; }
+    body {
+      font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+      line-height: 1.75;
+      color: #1a1a2e;
+      background: #fff8f0;
+    }
+    a { color: #c0392b; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { width: min(800px, 92%); margin: 0 auto; }
+    header {
+      background: linear-gradient(135deg, #e74c3c, #f39c12);
+      color: #fff;
+      padding: 2rem 0 1.5rem;
+      border-bottom: 4px solid #1a1a2e;
+    }
+    .demo-notice {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #92400e;
+      background: #fef3c7;
+      border: 1px solid #fcd34d;
+      border-radius: 4px;
+      padding: 0.15rem 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .site-name { font-size: clamp(1.75rem, 6vw, 2.5rem); font-weight: 800; }
+    .site-name a { color: inherit; }
+    .site-tagline { margin-top: 0.35rem; font-size: 0.9rem; }
+    nav { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.25rem; font-size: 0.9rem; font-weight: 600; }
+    nav a { color: #fff; }
+    main { padding: 2.5rem 0 4rem; }
+    section { margin-bottom: 2.5rem; }
+    h2 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      padding-left: 0.75rem;
+      border-left: 4px solid #e74c3c;
+    }
+    .lead { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 800; line-height: 1.35; margin-bottom: 1rem; }
+    .text { color: #444; }
+    .next-box {
+      background: #fff;
+      border: 2px solid #1a1a2e;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 4px 4px 0 #1a1a2e;
+    }
+    .next-date { font-size: 1.1rem; font-weight: 700; color: #e74c3c; }
+    .next-title { font-size: 1.2rem; font-weight: 700; margin: 0.5rem 0; }
+    .next-detail { color: #555; margin-bottom: 1rem; }
+    .btn {
+      display: inline-block;
+      background: #1a1a2e;
+      color: #fff;
+      font-size: 0.875rem;
+      font-weight: 600;
+      padding: 0.6rem 1.2rem;
+      border-radius: 4px;
+    }
+    .btn:hover { text-decoration: none; background: #2d2d44; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.875rem; background: #fff; border: 1px solid #ddd; border-radius: 6px; overflow: hidden; }
+    th, td { padding: 0.75rem; text-align: left; border-bottom: 1px solid #eee; vertical-align: top; }
+    th { background: #1a1a2e; color: #fff; }
+    tr:last-child td { border-bottom: none; }
+    tr.next { background: #fff3e0; }
+    .note { margin-top: 0.75rem; font-size: 0.8rem; color: #666; }
+    .cards { list-style: none; display: grid; gap: 1rem; }
+    .cards li { background: #fff; border: 1px solid #f0d9b5; border-left: 4px solid #f39c12; border-radius: 6px; padding: 1.25rem; }
+    .cards h3 { font-size: 1rem; color: #c0392b; margin-bottom: 0.4rem; }
+    .cards p { font-size: 0.9rem; color: #555; }
+    .profile { display: grid; grid-template-columns: 7rem 1fr; gap: 0.5rem 1rem; background: #fff; border: 1px solid #eee; border-radius: 6px; padding: 1.25rem; }
+    .profile dt { font-weight: 700; color: #666; font-size: 0.875rem; }
+    .history { list-style: none; }
+    .history li { display: flex; gap: 1rem; padding: 0.6rem 0; border-bottom: 1px solid #eee; color: #444; }
+    .history li:last-child { border-bottom: none; }
+    .history .year { flex-shrink: 0; width: 6rem; font-size: 0.875rem; color: #888; font-weight: 600; }
+    .achievements { padding-left: 1.25rem; color: #444; }
+    .achievements li { margin-bottom: 0.4rem; }
+    .contact-box { background: #fff; border: 2px dashed #e74c3c; border-radius: 8px; padding: 1.25rem; }
+    .contact-box .email { font-weight: 700; color: #c0392b; }
+    footer { background: #1a1a2e; color: #aaa; padding: 1.5rem 0; text-align: center; font-size: 0.8rem; }
+    footer a { color: #f39c12; }
+    @media (max-width: 600px) {
+      table { font-size: 0.8rem; }
+      th, td { padding: 0.5rem; }
+      .profile { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="container">
+
+  <!-- ==================== ヘッダー ==================== -->
+  <header>
+    <div class="wrap">
+
+      <!-- ▼ 編集エリア：基本情報 ▼ -->
       <p class="demo-notice">このサイトはデモ公開中です</p>
-      <p class="site-title"><a href="index.html">いさむボーイ</a></p>
-      <p class="site-subtitle">大道芸人 / ジャグリング・マジック・大道ネタ</p>
-      <nav class="site-nav">
-        <a href="index.html" aria-current="page">Home</a>
-        <a href="schedule.html">Schedule</a>
-        <a href="about.html">Profile</a>
+      <p class="site-name"><a href="#">いさむボーイ</a></p>
+      <p class="site-tagline">大道芸人 / パントマイム</p>
+      <!-- ▲ 編集エリア：基本情報 ▲ -->
+
+      <nav>
+        <a href="#top">Home</a>
+        <a href="#schedule">Schedule</a>
+        <a href="#profile">Profile</a>
       </nav>
     </div>
   </header>
 
-  <main class="container">
-    <section class="hero">
-      <p class="hero-label">Official Website</p>
-      <h1>街角から、<br>みんなを笑顔に。</h1>
-      <p>
-        ジャグリングとマジック、そして即興の大道ネタで
+  <main class="wrap">
+
+    <!-- ==================== トップ ==================== -->
+    <section id="top">
+
+      <!-- ▼ 編集エリア：キャッチコピー ▼ -->
+      <h2>ごあいさつ</h2>
+      <p class="lead">街角から、<br>みんなを笑顔に。</p>
+      <p class="text">
+        パントマイムと即興の大道ネタで、
         お祭り・イベント・商店街の一角を盛り上げます。
         次の出演情報は下記スケジュールをご確認ください。
       </p>
+      <!-- ▲ 編集エリア：キャッチコピー ▲ -->
+
     </section>
 
-    <section class="next-show">
+    <!-- ==================== 次の出演 ==================== -->
+    <section id="next">
+
       <h2>次の出演</h2>
-      <div class="next-show-card">
-        <p class="next-show-date">2026年6月14日（日）</p>
-        <p class="next-show-title">下北沢 駅前ストリートフェス</p>
-        <p class="next-show-detail">
-          13:00–13:30 / 16:00–16:30　｜　下北沢駅南口広場
-        </p>
-        <a class="btn" href="schedule.html">スケジュール一覧を見る</a>
+      <div class="next-box">
+
+        <!-- ▼ 編集エリア：次の出演（1件だけ書く） ▼ -->
+        <p class="next-date">2026年6月14日（日）</p>
+        <p class="next-title">下北沢 駅前ストリートフェス</p>
+        <p class="next-detail">13:00–13:30 / 16:00–16:30 ｜ 下北沢駅南口広場</p>
+        <!-- ▲ 編集エリア：次の出演 ▲ -->
+
+        <a class="btn" href="#schedule">スケジュール一覧を見る</a>
       </div>
+
     </section>
 
-    <section class="schedule-preview">
-      <h2>直近のスケジュール</h2>
-      <table class="schedule-table">
+    <!-- ==================== スケジュール ==================== -->
+    <section id="schedule">
+
+      <h2>出演スケジュール</h2>
+      <p class="text">2026年6月〜7月の予定です。雨天時は変更・中止になる場合があります。</p>
+
+      <!--
+        【スケジュールの追加・変更方法】
+        ・1行 = 1つの <tr> ... </tr>
+        ・下の行をコピーして貼り付け、中身を書き換える
+        ・休演日は「休演」と書く
+        ・次の出演と同じ行には class="next" を付ける（黄色く表示）
+      -->
+      <table>
         <thead>
           <tr>
             <th>日付</th>
             <th>時間</th>
             <th>場所</th>
             <th>内容</th>
+            <th>備考</th>
           </tr>
         </thead>
         <tbody>
+
+          <!-- ▼ 編集エリア：スケジュール（行をコピーして追加） ▼ -->
+
           <tr>
+            <td>6/7（日）</td>
+            <td>—</td>
+            <td>—</td>
+            <td>休演</td>
+            <td>—</td>
+          </tr>
+
+          <tr class="next">
             <td>6/14（日）</td>
-            <td>13:00 / 16:00</td>
-            <td>下北沢駅南口</td>
-            <td>ストリートフェス</td>
+            <td>13:00–13:30 / 16:00–16:30</td>
+            <td>下北沢駅南口広場</td>
+            <td>下北沢ストリートフェス</td>
+            <td>1日2ステージ</td>
           </tr>
+
           <tr>
-            <td>6/21（日）</td>
-            <td>11:00–12:00</td>
-            <td>代々木公園 ケヤキ並木</td>
-            <td>大道パフォーマンス</td>
+            <td>6/15（月）</td>
+            <td>18:30–19:00</td>
+            <td>新宿サンシャイン通り</td>
+            <td>平日夕方ショー</td>
+            <td>小雨決行</td>
           </tr>
-          <tr>
-            <td>6/28（日）</td>
-            <td>14:00–15:00</td>
-            <td>横浜・赤レンガ倉庫</td>
-            <td>イベント出演</td>
-          </tr>
-          <tr>
-            <td>7/5（日）</td>
-            <td>12:00 / 15:00</td>
-            <td>高田馬場 アーケード</td>
-            <td>商店街サンクスデー</td>
-          </tr>
+          <!-- ▲ 編集エリア：スケジュール ▲ -->
+
         </tbody>
       </table>
-      <p class="schedule-note">
-        ※ 天候や会場都合により変更・中止になる場合があります。最新情報は
-        <a href="schedule.html">スケジュールページ</a>をご確認ください。
-      </p>
+      <p class="note">※ 天候や会場都合により変更・中止になる場合があります。</p>
+
     </section>
 
-    <section class="acts">
+    <!-- ==================== パフォーマンス内容 ==================== -->
+    <section id="acts">
+
       <h2>パフォーマンス内容</h2>
-      <ul class="card-list">
+      <ul class="cards">
+
+        <!-- ▼ 編集エリア：パフォーマンス（<li> をコピーして追加） ▼ -->
+
         <li>
-          <h3>ジャグリング</h3>
-          <p>ボール・クラブ・リングを使った華やかな技。子どもから大人まで楽しめるショーです。</p>
+          <h3>パントマイム</h3>
+          <p>無言の演技で物語を届けます。子どもから大人まで楽しめるショーです。</p>
         </li>
-        <li>
-          <h3>マジック</h3>
-          <p>近距離マジックと大道向けの大がかりなトリック。観客参加型のネタも得意です。</p>
-        </li>
+
         <li>
           <h3>大道ネタ</h3>
-          <p>即興トークと音楽、ちょっと変わった小道具ネタで、通りすがりの方も足を止めてしまう演出を目指しています。</p>
+          <p>即興の掛け合いと小道具を使ったネタで、通りすがりの方も足を止めてしまう演出を目指しています。</p>
         </li>
+
+        <!-- ▲ 編集エリア：パフォーマンス ▲ -->
+
       </ul>
+
     </section>
+
+    <!-- ==================== プロフィール ==================== -->
+    <section id="profile">
+
+      <h2>Profile</h2>
+
+      <!-- ▼ 編集エリア：プロフィール ▼ -->
+      <dl class="profile">
+        <dt>芸名</dt>
+        <dd>いさむボーイ</dd>
+        <dt>ジャンル</dt>
+        <dd>大道芸（パントマイム）</dd>
+        <dt>活動エリア</dt>
+        <dd>関東中心（東京・神奈川・埼玉）</dd>
+        <dt>出演時間</dt>
+        <dd>1ステージ 5〜60分（ご相談に応じます）</dd>
+      </dl>
+
+      <p class="text" style="margin-top:1.25rem">
+        「通りすがりの10秒を、忘れられない1分に」をモットーに活動する大道芸人。
+        パントマイムを中心に、観客との掛け合いで場を温めるスタイルが持ち味です。
+      </p>
+      <!-- ▲ 編集エリア：プロフィール ▲ -->
+
+      <h2 style="margin-top:2rem">経歴</h2>
+      <ul class="history">
+
+        <!-- ▼ 編集エリア：経歴（<li> をコピーして追加） ▼ -->
+
+        <li><span class="year">2022–</span> 「いさむボーイ」として大道デビュー</li>
+        <li><span class="year">2020–2022</span> パントマイムサークルで全国大会出場</li>
+        <li><span class="year">2018–2020</span> ストリートシアターにて修行</li>
+
+        <!-- ▲ 編集エリア：経歴 ▲ -->
+
+      </ul>
+
+      <h2 style="margin-top:2rem">出演実績（一部）</h2>
+      <ul class="achievements">
+
+        <!-- ▼ 編集エリア：出演実績（<li> をコピーして追加） ▼ -->
+
+        <li>下北沢ストリートフェス（2024, 2025, 2026）</li>
+        <li>横浜赤レンガ倉庫 港町イベント</li>
+        <li>高田馬場商店街 サンクスデー</li>
+        <li>区民祭り・学校文化祭 など多数</li>
+
+        <!-- ▲ 編集エリア：出演実績 ▲ -->
+
+      </ul>
+
+    </section>
+
+    <!-- ==================== お問い合わせ ==================== -->
+    <section id="contact">
+
+      <h2>出演依頼・お問い合わせ</h2>
+      <div class="contact-box">
+
+        <!-- ▼ 編集エリア：連絡先 ▼ -->
+        <p class="text">お祭り・商店街イベント・学校行事など、出張出演も承っています。</p>
+        <p class="email">demo@isamu-boy.example</p>
+        <!-- ▲ 編集エリア：連絡先 ▲ -->
+
+      </div>
+
+    </section>
+
   </main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <p>出演依頼・お問い合わせ: demo@isamu-boy.example（デモ用）</p>
+  <footer>
+    <div class="wrap">
+
+      <!-- ▼ 編集エリア：フッター ▼ -->
+      <p>出演依頼・お問い合わせ: demo@isamu-boy.example</p>
       <p>&copy; 2026 いさむボーイ. All rights reserved.</p>
-      <p class="back-link"><a href="../">← ポータルへ戻る</a></p>
+      <!-- ▲ 編集エリア：フッター ▲ -->
+
+      <p style="margin-top:0.75rem"><a href="../">← ポータルへ戻る</a></p>
     </div>
   </footer>
+
 </body>
 </html>
