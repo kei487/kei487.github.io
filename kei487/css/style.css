@@ -124,3 +124,7 @@ main {
   font-size: 0.8125rem;
   color: #64748b;
 }
+
+.back-link {
+  margin-top: 0.5rem;
+}
