@@ -128,3 +128,110 @@ main {
 .back-link {
   margin-top: 0.5rem;
 }
+
+/* 自己紹介ページ */
+.profile h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+.profile-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-start;
+  margin-bottom: 2.5rem;
+}
+
+.profile-photo {
+  flex-shrink: 0;
+  width: 200px;
+  margin: 0;
+  background: #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.profile-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.profile-body {
+  flex: 1;
+  min-width: 200px;
+}
+
+.profile-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.profile-lead {
+  color: #475569;
+}
+
+.profile-section {
+  margin-bottom: 2rem;
+}
+
+.profile-section h2 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.profile-section p {
+  color: #475569;
+}
+
+.timeline {
+  list-style: none;
+}
+
+.timeline li {
+  display: flex;
+  gap: 1rem;
+  padding: 0.625rem 0;
+  border-bottom: 1px solid #e2e8f0;
+  color: #475569;
+}
+
+.timeline li:last-child {
+  border-bottom: none;
+}
+
+.timeline span {
+  flex-shrink: 0;
+  width: 6.5rem;
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+.tag-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag-list li {
+  font-size: 0.875rem;
+  color: #475569;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  padding: 0.25rem 0.75rem;
+}
+
+.page-nav {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+}
